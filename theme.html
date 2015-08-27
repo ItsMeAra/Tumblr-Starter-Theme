@@ -29,7 +29,7 @@
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=googlefonts">
     <style>{CustomCSS}</style>
     <style>
-        .siteHeader.has-backgroundImg {
+        .siteHeader.has-bgImg {
             background-image: url('{HeaderImage}');
         }
         a:hover, 
@@ -60,7 +60,7 @@
       </defs>
     </svg>    
     
-    <header class="siteHeader  {block:ifShowHeaderImage}has-backgroundImg{/block:ifShowHeaderImage}" role="banner">
+    <header class="siteHeader  {block:ifShowHeaderImage}has-bgImg{/block:ifShowHeaderImage}" role="banner">
       <h1 class="siteTitle">
         <a href="{BlogURL}">{Title}</a>
       </h1>
@@ -76,152 +76,159 @@
       </nav>      
     </header>
 
-      {block:SearchPage}
-        <article class="post">
-          {block:SearchResults}
-            <h1>{SearchResultCount} results for {SearchQuery}</h1>
-          {/block:SearchResults}
-          
-          {block:NoSearchResults}
-            <h1>No search results for {SearchQuery}</h1>
-          {/block:NoSearchResults}
-        </article>
-      {/block:SearchPage}
+    <div class="siteContent">
+      <section class="posts">
+        {block:SearchPage}
+          <header class="pageHeader">
+            {block:SearchResults}
+              <h1>{SearchResultCount} results for {SearchQuery}</h1>
+            {/block:SearchResults}
+            
+            {block:NoSearchResults}
+              <h1>No search results for {SearchQuery}</h1>
+            {/block:NoSearchResults}
+          </header>
+        {/block:SearchPage}
 
+        {block:Posts}
+          {block:Regular}
+          <article class="post  post--regular  post--{PostID}">
+            {block:Title}<h2 class="title"><a href="{Permalink}">{Title}</a></h2>{/block:Title}
+            
+            <div class="post-content">
+              {Body}
+            </div>
 
-    <section class="posts">
-      {block:Posts}
+            <footer class="post-meta">
+              <p class="permalink"><a href="{Permalink}">{Month} {DayOfMonth}, {Year}</a></p>
+            </footer>
+          </article>
+          {/block:Regular}
 
-        {block:Regular}
-        <div class="post  post--regular  post--{PostID}">
-          {block:Title}<h2 class="title"><a href="{Permalink}">{Title}</a></h2>{/block:Title}
-          {Body}
+          {block:Text}
+          <article class="post  post--text  post--{PostID}">
+            {block:Title}<h2 class="title"><a href="{Permalink}">{Title}</a></h2>{/block:Title}
+            
+            <div class="post-content">
+              {Body}
+            </div>
 
-          <section class="post-meta">
+            <footer class="post-meta">
+              <p class="permalink"><a href="{Permalink}">{Month} {DayOfMonth}, {Year}</a></p>
+            </footer>
+          </article>
+          {/block:Text}        
+
+          {block:Photo}
+          <article class="post  post--photo  post--{PostID}">
+            {LinkOpenTag}
+              <img class="photo" src="{PhotoURL-500}" alt="{PhotoAlt}" {block:HighRes}style="display:none"{/block:HighRes} />
+              {block:HighRes}<img class="photo" src="{PhotoURL-HighRes}" class="highres" alt="{PhotoAlt}">{/block:HighRes}
+            {LinkCloseTag}
+
+            <footer class="post-meta">
+              {block:Caption}<div class="caption">{Caption}</div>{/block:Caption}
+              <p class="permalink"><a href="{Permalink}">{Month} {DayOfMonth}, {Year}</a></p>
+            </footer>
+          </article>
+          {/block:Photo}
+
+          {block:Photoset}
+            <article class="post  post--photoset  post--{PostID}">
+                {block:Photos}
+                    <img class="photo" src="{PhotoURL-500}" alt="{PhotoAlt}" {block:HighRes}style="display:none"{/block:HighRes} />
+                    {block:HighRes}<img class="photo" src="{PhotoURL-HighRes}" class="highres" alt="{PhotoAlt}">{/block:HighRes}
+                {/block:Photos}
+                {block:Caption}<p>{Caption}</p>{/block:Caption}
+            </article>
+          {/block:Photoset}        
+
+          {block:Quote}
+          <article class="post  post--quote  post--{PostID}  {length}">
+            <div class="quoteactual"><q>{Quote}</q></div>
+
+            <footer class="post-meta">
+              <div class="source"><span class="emdash">&mdash;</span>{Source}</div>
+              <p class="permalink"><a href="{Permalink}">{Month} {DayOfMonth}, {Year}</a></p>
+            </footer>
+          </article>
+          {/block:Quote}
+
+          {block:Link}
+          <article class="post  post--link  post--{PostID}">
+            <p><a href="{URL}" class="link" {Target}>{Name}</a></p>
+            <div class="description">{Description}</div>
             <p class="permalink"><a href="{Permalink}">{Month} {DayOfMonth}, {Year}</a></p>
-          </section>
-        </div>
-        {/block:Regular}
+          </article>
+          {/block:Link}
 
-        {block:Text}
-        <div class="post  post--text  post--{PostID}">
-          {block:Title}<h2 class="title"><a href="{Permalink}">{Title}</a></h2>{/block:Title}
-          {Body}
+          {block:Chat}
+            <article class="post  post--chat  post--{PostID}">
+              {block:Title}<h1><a href="{Permalink}">{Title}</a></h1>{/block:Title}
+              <div class="chat">
+                {block:Lines}
+                  <div class="line {Alt}">{block:Label}<strong>{Label}</strong>{/block:Label} {Line}</div>
+                {/block:Lines}
+              </div>
+            </article>
+          {/block:Chat}        
 
-          <section class="post-meta">
-            <p class="permalink"><a href="{Permalink}">{Month} {DayOfMonth}, {Year}</a></p>
-          </section>
-        </div>
-        {/block:Text}        
-
-        {block:Photo}
-        <div class="post  post--photo  post--{PostID}">
-          {LinkOpenTag}
-            <img class="photo" src="{PhotoURL-500}" alt="{PhotoAlt}" {block:HighRes}style="display:none"{/block:HighRes} />
-            {block:HighRes}<img class="photo" src="{PhotoURL-HighRes}" class="highres" alt="{PhotoAlt}">{/block:HighRes}
-          {LinkCloseTag}
-
-          <section class="post-meta">
-            {block:Caption}<div class="caption">{Caption}</div>{/block:Caption}
-            <p class="permalink"><a href="{Permalink}">{Month} {DayOfMonth}, {Year}</a></p>
-          </section>
-        </div>
-        {/block:Photo}
-
-        {block:Photoset}
-          <div class="post  post--photoset  post--{PostID}">
-              {block:Photos}
-                  <img class="photo" src="{PhotoURL-500}" alt="{PhotoAlt}" {block:HighRes}style="display:none"{/block:HighRes} />
-                  {block:HighRes}<img class="photo" src="{PhotoURL-HighRes}" class="highres" alt="{PhotoAlt}">{/block:HighRes}
-              {/block:Photos}
-              {block:Caption}<p>{Caption}</p>{/block:Caption}
-          </div>
-        {/block:Photoset}        
-
-        {block:Quote}
-        <div class="{length} post  post--quote  post--{PostID}">
-          <div class="quoteactual"><q>{Quote}</q></div>
-
-          <section class="post-meta">
-            <div class="source"><span class="emdash">&mdash;</span>{Source}</div>
-            <p class="permalink"><a href="{Permalink}">{Month} {DayOfMonth}, {Year}</a></p>
-          </section>
-        </div>
-        {/block:Quote}
-
-        {block:Link}
-        <div class="post  post--link  post--{PostID}">
-          <p><a href="{URL}" class="link" {Target}>{Name}</a></p>
-          <div class="description">{Description}</div>
-          <p class="permalink"><a href="{Permalink}">{Month} {DayOfMonth}, {Year}</a></p>
-        </div>
-        {/block:Link}
-
-        {block:Chat}
-          <div class="post  post--chat  post--{PostID}">
-            {block:Title}<h1><a href="{Permalink}">{Title}</a></h1>{/block:Title}
-            <div class="chat">
+          {block:Conversation}
+          <article class="post  post--conversation  post--{PostID}">
+            <ul>
               {block:Lines}
-                <div class="line {Alt}">{block:Label}<strong>{Label}</strong>{/block:Label} {Line}</div>
+              <li class="{Alt}">
+                {block:Label}<span class="label">{Label}</span>{/block:Label}
+              {Line}
+              </li>
               {/block:Lines}
-            </div>
-          </div>
-        {/block:Chat}        
-
-        {block:Conversation}
-        <div class="post  post--conversation  post--{PostID}">
-          <ul>
-            {block:Lines}
-            <li class="{Alt}">
-              {block:Label}<span class="label">{Label}</span>{/block:Label}
-            {Line}
-            </li>
-            {/block:Lines}
-          </ul>
-          <p class="permalink"><a href="{Permalink}">{Month} {DayOfMonth}, {Year}</a></p>
-        </div>
-        {/block:Conversation}
-
-        {block:Audio}
-        <div class="post  post--audio  post--{PostID}">
-          {AudioPlayerWhite}
-          <div class="caption">{block:Caption}{Caption}{/block:Caption}{block:ExternalAudio} [<a href="{ExternalAudioURL}">Download</a>]{/block:ExternalAudio}</div>
-          <p class="permalink"><a href="{Permalink}">{Month} {DayOfMonth}, {Year}</a></p>
-        </div>
-        {/block:Audio}
-
-        {block:Video}
-        <div class="post  post--video  post--{PostID}">
-          {Video-500}
-
-          <section class="post-meta">
-            <div class="caption">{Caption}</div>
+            </ul>
             <p class="permalink"><a href="{Permalink}">{Month} {DayOfMonth}, {Year}</a></p>
-          </section>
+          </article>
+          {/block:Conversation}
+
+          {block:Audio}
+          <article class="post  post--audio  post--{PostID}">
+            {AudioPlayerWhite}
+            <div class="caption">{block:Caption}{Caption}{/block:Caption}{block:ExternalAudio} [<a href="{ExternalAudioURL}">Download</a>]{/block:ExternalAudio}</div>
+            <p class="permalink"><a href="{Permalink}">{Month} {DayOfMonth}, {Year}</a></p>
+          </article>
+          {/block:Audio}
+
+          {block:Video}
+          <article class="post  post--video  post--{PostID}">
+            {Video-500}
+
+            <footer class="post-meta">
+              <div class="caption">{Caption}</div>
+              <p class="permalink"><a href="{Permalink}">{Month} {DayOfMonth}, {Year}</a></p>
+            </footer>
+          </article>
+          {/block:Video}
+
+          {block:Answer}
+            <article class="post  post--answer  post--{PostID}">
+              <div class="chat">
+                <div class="line odd"><strong>{Asker}</strong> {Question}</div>
+                <div class="line even">{Answer}</div>
+              </div>
+            </article>
+          {/block:Answer}
+        {/block:Posts}
+
+        {block:Pagination}
+        <div class="pagination">
+          <div id="older-link">{block:NextPage}<a href="{NextPage}">&larr; Older</a>{/block:NextPage}</div>
+          <div id="page-count">{CurrentPage} <span>of</span> {TotalPages}</div>
+          <div id="newer-link">{block:PreviousPage}<a href="{PreviousPage}">Newer &rarr;</a>{/block:PreviousPage}</div>
         </div>
-        {/block:Video}
+        {/block:Pagination}    
+      </section>
+    </div> <!-- /.siteContent -->
 
-
-        {block:Answer}
-          <div class="post  post--answer  post--{PostID}">
-            <div class="chat">
-              <div class="line odd"><strong>{Asker}</strong> {Question}</div>
-              <div class="line even">{Answer}</div>
-            </div>
-          </div>
-        {/block:Answer}
-
-
-      {/block:Posts}
-    </section>
-
-    {block:Pagination}
-    <div class="pagination">
-      <div id="older-link">{block:NextPage}<a href="{NextPage}">&larr; Older</a>{/block:NextPage}</div>
-      <div id="page-count">{CurrentPage} <span>of</span> {TotalPages}</div>
-      <div id="newer-link">{block:PreviousPage}<a href="{PreviousPage}">Newer &rarr;</a>{/block:PreviousPage}</div>
-    </div>
-    {/block:Pagination}    
+    <aside class="siteSidebar">
+      Sidebar stuff
+    </aside>
 
     <footer class="siteFooter">
       <div class="siteAuthor">
