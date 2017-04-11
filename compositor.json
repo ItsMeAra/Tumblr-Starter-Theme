@@ -1,0 +1,92 @@
+{
+  "name": "ItsMeAra/Tumblr-Starter-Theme",
+  "version": "0.1.4",
+  "libraries": {
+    "xv": "^1.1.25"
+  },
+  "title": "",
+  "branch": "",
+  "style": {
+    "name": "Future",
+    "componentSet": {
+      "nav": "nav/BasicNav",
+      "header": "header/BannerHeader",
+      "article": "article/BasicArticle",
+      "footer": "footer/BasicFooter"
+    },
+    "fontFamily": "\"Avenir Next\", Helvetica, sans-serif",
+    "heading": {
+      "fontWeight": 500,
+      "textTransform": "uppercase",
+      "letterSpacing": "0.2em"
+    },
+    "alternativeText": {
+      "textTransform": "uppercase",
+      "fontWeight": 400,
+      "letterSpacing": "0.2em",
+      "opacity": 0.75
+    },
+    "colors": {
+      "text": "#333",
+      "background": "#fff",
+      "primary": "#666",
+      "secondary": "#888",
+      "highlight": "#1f80ff",
+      "muted": "#f6f6f6",
+      "border": "#eee"
+    },
+    "layout": {
+      "centered": true,
+      "maxWidth": 1024,
+      "bannerHeight": "80vh"
+    }
+  },
+  "content": [
+    {
+      "component": "nav",
+      "links": [
+        {
+          "href": "https://github.com/ItsMeAra/Tumblr-Starter-Theme",
+          "text": "GitHub"
+        }
+      ]
+    },
+    {
+      "component": "header",
+      "heading": "Tumblr-Starter-Theme",
+      "subhead": "A barebones, unstyled Tumblr Theme.",
+      "children": [
+        {
+          "component": "ui/TweetButton",
+          "text": "Tumblr-Starter-Theme: A barebones, unstyled Tumblr Theme.",
+          "url": ""
+        },
+        {
+          "component": "ui/GithubButton",
+          "user": "ItsMeAra",
+          "repo": "Tumblr-Starter-Theme"
+        }
+      ]
+    },
+    {
+      "component": "article",
+      "metadata": {
+        "source": "github.readme"
+      },
+      "html": "\n<p>Once in a blue moon I work with Tumblr. This helps.</p>\n"
+    },
+    {
+      "component": "footer",
+      "links": [
+        {
+          "href": "https://github.com/ItsMeAra/Tumblr-Starter-Theme",
+          "text": "GitHub"
+        },
+        {
+          "href": "https://github.com/ItsMeAra",
+          "text": "ItsMeAra"
+        }
+      ]
+    }
+  ]
+}
